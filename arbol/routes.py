@@ -6,6 +6,6 @@ def create_app():
 
     @app.route("/")
     def index():
-        return render_template("index.jinja",
+        return render_template("index.html",
                                infinitive="saludar (al mundo)")
     return app
