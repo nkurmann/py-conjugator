@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>arbol</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="../static/style.css"> -->
+</head>
+
+<body class="bg-secondary bg-gradient min-vh-100">
+    <main class="container p-0">
+        <!-- TITLE -->
+        <div class="p-0 mt-4">
+            <!-- <div class="fs-1 fw-light text-light"> -->
+            <div class="display-1 text-light">
+                {% block title %} {% endblock %}
+            </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div id="input-container" class="container mb-3 mt-3 p-0">
+            <form class="input-group">
+                <div class="form-floating flex-fill">
+                    <input autofocus type="text" name="q" class="form-control rounded-0 border-0" id="search-input"
+                        placeholder=" " value="{{query}}" />
+                    <label for="search-input ">Search</label>
+                </div>
+                <button type="submit" class="btn rounded-0 bg-white">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- CONTENT -->
+        {% block content %} {% endblock %}
+
+        <!-- FOOTER -->
+        <div class="text-center m-4 text-dark">
+            This is a work in progress and might be moved to a different URL
+            without notice.<br />
+            Translations are provided by the original work of Fred Jehle
+            under the CC-BY-NC-SA.<br />
+            Find the verb database on <a href="https://github.com/ghidinelli/fred-jehle-spanish-verbs">GitHub</a>.<br />
+        </div>
+    </main>
+
+    <!-- <script src="" async defer></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

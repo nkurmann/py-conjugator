@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+
+{% macro search_result(result) %}
+{% if result.__class__.__name__ == 'InvariantVerb' %}
+{{invariant_result(result)}}
+{% elif result.__class__.__name__ == 'FormedVerb' %}
+{{conjugated_result(result)}}
+{% else %}
+<div class="alert alert-danger">unknown search result</div>
+{% endif %}
+{% endmacro %}
+
+
+{% macro card_header(light_title, heavy_title, subtitle) %}
+<div class="d-flex justify-content-between">
+    <div class="fs-2">
+        <span class="fw-light">
+            {{light_title}}
+        </span>
+        <span class="fw-bold">
+            {{heavy_title}}
+        </span>
+    </div>
+
+    <div class="fw-light text-end">{{subtitle}}</div>
+</div>
+{% endmacro %}
+
+
+{% macro conjugated_result(word) %}
+<div class="col col-md-6">
+    <div class="container bg-light">
+        {{card_header(
+            word.get_performer(),
+            word.get_formed_verb(),
+            word.get_full_tense()
+        )}}
+
+
+        <div class="text-center">
+            <span class="fw-bold">{{word.infinitive+":"}}</span>
+            <span class="fst-italic">{{word.translation}}</span>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{%macro invariant_result(word)%}
+<div class="col col-md-6">
+    <div class="container bg-light">
+        {{card_header(
+            "",
+            word.conjugated,
+            word.tense
+        )}}
+        <div class="fst-italic text-center">{{word.translation}}</div>
+    </div>
+</div>
+{% endmacro %}
+
+{% block title %}Search{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row g-3">
+        {% for result in search_results %}
+        {{search_result(result)}}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
