@@ -11,6 +11,8 @@
 {% endif %}
 {% endmacro %}
 
+{% block title %}Search{% endblock %}
+
 
 {% macro card_header(light_title, heavy_title, subtitle) %}
 <div class="d-flex justify-content-between">
@@ -29,44 +31,38 @@
 
 
 {% macro conjugated_result(word) %}
-<div class="col col-md-6">
-    <div class="container bg-light">
-        {{card_header(
+{{card_header(
             word.get_performer(),
             word.get_formed_verb(),
             word.get_full_tense()
         )}}
 
 
-        <div class="text-center">
-            <span class="fw-bold">{{word.infinitive+":"}}</span>
-            <span class="fst-italic">{{word.translation}}</span>
-        </div>
-    </div>
+<div class="text-center">
+    <span class="fw-bold">{{word.infinitive+":"}}</span>
+    <span class="fst-italic">{{word.translation}}</span>
 </div>
 {% endmacro %}
 
 {%macro invariant_result(word)%}
-<div class="col col-md-6">
-    <div class="container bg-light">
-        {{card_header(
+{{card_header(
             "",
             word.conjugated,
             word.tense
         )}}
-        <div class="fst-italic text-center">{{word.translation}}</div>
-    </div>
-</div>
+<div class="fst-italic text-center">{{word.translation}}</div>
 {% endmacro %}
-
-{% block title %}Search{% endblock %}
-
 
 {% block content %}
 <div class="container">
     <div class="row g-3">
         {% for result in search_results %}
-        {{search_result(result)}}
+
+        <div class="col col-md-6 col-12">
+            <a class="container bg-light btn " href="{{result.infinitive}}">
+                {{search_result(result)}}
+            </a>
+        </div>
         {% endfor %}
     </div>
 </div>

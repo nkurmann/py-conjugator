@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}Conjugate{% endblock %}
+
+{% block content %}
+<div class="">
+    <!--BASE-->
+    <div class="container bg-light p-3">
+        <div class="row">
+
+            <div class="display-3 col ">{{infinitive}}</div>
+            <div class="col ">
+                <div><b>gerundio:</b> {{gerund}}</div>
+                <div><b>participio:</b> {{pastparticiple}}</div>
+            </div>
+        </div>
+        <div class="fst-italic text-center mt-3">{{english_meaning}}</div>
+    </div>
+
+    <!--BUTTONS-->
+    <div class="btn-group col-md-6 col-sm-12 my-3">
+        <input type="radio" class="btn-check btn-light" name="mood" id="imperative" autocomplete="off" />
+        <label class="btn btn-light " for="imperative">Imperativo</label>
+
+        <input type="radio" class="btn-check btn-ligh" name="mood" id="indicative" autocomplete="off" checked />
+        <label class="btn btn-light  mx-1" for="indicative">Indicativo</label>
+
+        <input type="radio" class="btn-check btn-light" name="mood" id="subjunctive" autocomplete="off" />
+        <label class="btn btn-light " for="subjunctive">Subjunctivo</label>
+    </div>
+
+    <!--TABLE-->
+    <div class="bg-light p-3">
+
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Presente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">yo</th>
+                    <td>{{verb.form_1s}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">tú</th>
+                    <td>{{verb.form_2s}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">él/ella/Ud.</th>
+                    <td>{{verb.form_3s}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">nosotros</th>
+                    <td>{{verb.form_1p}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">vosotros</th>
+                    <td>{{verb.form_2p}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">ellos/ellas/Uds.</th>
+                    <td>{{verb.form_3p}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
