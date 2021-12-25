@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Conjugate{% endblock %}
+{% block title %}Conjugar{% endblock %}
 
 {% block content %}
 <div class="">
@@ -20,24 +20,24 @@
     <!--BUTTONS-->
     <div class="row justify-content-center">
         <div class="btn-group col-md-6 col-sm-12 mt-4 container">
-            <input type="radio" class="btn-check" name="mood" id="imperative" autocomplete="off" />
+            <input type="radio" class="btn-check" name="mood" id="imperative" autocomplete="off" disabled />
             <label class="btn btn-bg-dark btn-outline-light col-4" for="imperative">Imperativo</label>
 
             <input type="radio" class="btn-check" name="mood" id="indicative" autocomplete="off" checked />
             <label class="btn btn-bg-dark btn-outline-light mx-1 col-4" for="indicative">Indicativo</label>
 
-            <input type="radio" class="btn-check" name="mood" id="subjunctive" autocomplete="off" />
+            <input type="radio" class="btn-check" name="mood" id="subjunctive" autocomplete="off" disabled />
             <label class="btn btn-bg-dark btn-outline-light col-4" for="subjunctive">Subjunctivo</label>
         </div>
 
-        <div class="btn-group col-md-6 col-sm-12 mt-  container">
-            <input type="radio" class="btn-check" name="tense" id="past" autocomplete="off" />
+        <div class="btn-group col-md-6 col-sm-12 mt-4 container">
+            <input type="radio" class="btn-check" name="tense" id="past" autocomplete="off" disabled />
             <label class="btn btn-outline-light col-4" for="past">Pasado</label>
 
             <input type="radio" class="btn-check" name="tense" id="present" autocomplete="off" checked />
             <label class="btn btn-outline-light col-4 mx-1" for="present">Presente</label>
 
-            <input type="radio" class="btn-check" name="tense" id="future" autocomplete="off" />
+            <input type="radio" class="btn-check" name="tense" id="future" autocomplete="off" disabled />
             <label class="btn btn-outline-light col-4" for="future">Futuro</label>
         </div>
     </div>

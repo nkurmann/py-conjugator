@@ -27,7 +27,14 @@ def create_app():
         gerund = conjugator.gerund_dict[infinitive]
         pastparticiple = conjugator.pastparticiple_dict[infinitive]
         english_meaning = conjugator.english_meaning_dict[infinitive]
-        return render_template("conjugate.html",
-                               verb=conj, infinitive=infinitive, gerund=gerund, pastparticiple=pastparticiple, english_meaning=english_meaning)
 
+
+        query = request.args.get("q", default="", type=str) # maintain contents of search box
+
+        return render_template("conjugate.html",
+                               verb=conj, infinitive=infinitive, gerund=gerund, pastparticiple=pastparticiple, english_meaning=english_meaning, query=query)
+
+    @app.route("/xms")
+    def xmas():
+        return render_template("xms.html")
     return app
