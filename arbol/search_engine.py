@@ -46,7 +46,7 @@ def clean(s: str):
     return unidecode(s).lower().strip()
 
 
-def create_multidict(values: List[Tuple]) -> Dict[str, List[str]]:
+def create_multidict(values: List[Tuple[str, str]]) -> Dict[str, List[str]]:
     res: Dict[str, List[str]] = {}
 
     for clean_val, original_val in values:

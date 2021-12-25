@@ -2,6 +2,36 @@
 
 {% block title %}Conjugate{% endblock %}
 
+
+{% macro conjugation_table(verbs) %}
+<div class="bg-light p-3">
+
+    <table class="table ">
+        <thead>
+
+            <tr>
+                <th scope="col"></th>
+                {% for verb in verbs %}
+                <th scope="col">{{verb.tense}}</th>
+                {% endfor %}
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for i_person in range(pronouns|count) %}
+            <tr>
+                <th scope="row">{{pronouns[i_person]}}</th>
+                {% for verb in verbs %}
+                <td>{{ verb.forms[i_person] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endmacro %}
+
+
 {% block content %}
 <div class="">
     <!--BASE-->
@@ -30,7 +60,7 @@
             <label class="btn btn-bg-dark btn-outline-light col-4" for="subjunctive">Subjunctivo</label>
         </div>
 
-        <div class="btn-group col-md-6 col-sm-12 mt-  container">
+        <div class="btn-group col-md-6 col-sm-12 mt-2 container">
             <input type="radio" class="btn-check" name="tense" id="past" autocomplete="off" />
             <label class="btn btn-outline-light col-4" for="past">Pasado</label>
 
@@ -43,43 +73,7 @@
     </div>
 
     <!--TABLE-->
-    <div class="bg-light p-3">
-
-        <table class="table ">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Presente</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">yo</th>
-                    <td>{{verb.form_1s}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">tú</th>
-                    <td>{{verb.form_2s}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">él/ella/Ud.</th>
-                    <td>{{verb.form_3s}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">nosotros</th>
-                    <td>{{verb.form_1p}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">vosotros</th>
-                    <td>{{verb.form_2p}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">ellos/ellas/Uds.</th>
-                    <td>{{verb.form_3p}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {{ conjugation_table(indicative_present) }}
 </div>
 
 {% endblock %}
