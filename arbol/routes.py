@@ -40,6 +40,9 @@ def create_app():
         pastparticiple = conjugator.pastparticiple_dict[infinitive]
         english_meaning = conjugator.english_meaning_dict[infinitive]
 
+        # maintain contents of search box
+        query = request.args.get("q", default="", type=str)
+
         conjugation: VerbConjugation = conjugator.verb_dict[infinitive]
         indicative_past = conjugation.get_tenses(
             Mood.indicative, indicative_past_tenses)
@@ -84,6 +87,11 @@ def create_app():
                                pastparticiple=pastparticiple,
                                english_meaning=english_meaning,
                                pronouns=pronouns,
-                               get_forms=get_forms)
+                               get_forms=get_forms,
+                               query=query)
+
+    @app.route("/xms")
+    def xmas():
+        return render_template("xms.html")
 
     return app

@@ -165,7 +165,11 @@ class FormedVerb:
     long: str | None = None
 
     def get_performer(self):
-        is_imperative = self.mood == Mood.imperative_affirmative or self.mood == Mood.imperative_negative
+        is_imperative = self.mood == Mood.imperative_affirmative \
+                                     or self.mood == Mood.imperative_negative \
+                                     or self.mood == "Imperative Affirmative" \
+                                     or self.mood == "Imperative Negative"
+
         if is_imperative:
             return f"({self.performer})"
         return self.performer

@@ -11,16 +11,16 @@
 {% endif %}
 {% endmacro %}
 
-{% block title %}Search{% endblock %}
+{% block title %}Buscar{% endblock %}
 
 
 {% macro card_header(light_title, heavy_title, subtitle) %}
 <div class="d-flex justify-content-between">
-    <div class="fs-2">
-        <span class="fw-light">
+    <div class="fs-2 text-start">
+        <span class="fw-light text-nowrap">
             {{light_title}}
         </span>
-        <span class="fw-bold">
+        <span class="fw-bold text-nowrap">
             {{heavy_title}}
         </span>
     </div>
@@ -54,12 +54,12 @@
 {% endmacro %}
 
 {% block content %}
-<div class="container">
+<div class="container p-0">
     <div class="row g-3">
         {% for result in search_results %}
 
         <div class="col col-md-6 col-12">
-            <a class="container bg-light btn " href="{{result.infinitive}}">
+            <a class="container bg-light btn " href="{{result.infinitive}}?q={{query}}">
                 {{search_result(result)}}
             </a>
         </div>
