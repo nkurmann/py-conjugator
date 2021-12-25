@@ -23,8 +23,12 @@ def create_app():
                                query=query,
                                search_results=search_results)
 
-    indicative_past_tenses = [Tense.preterite, Tense.conditional_perfect, Tense.imperfect,
-                              Tense.present_perfect, Tense.past_perfect, Tense.preterite_archaic]
+    indicative_past_tenses = [Tense.preterite,
+                              Tense.imperfect,
+                              Tense.present_perfect,
+                              Tense.past_perfect,
+                              Tense.conditional_perfect,
+                              Tense.preterite_archaic]
     indicative_present_tenses = [Tense.present, Tense.conditional]
     indicative_future_tenses = [Tense.future, Tense.future_perfect]
 
@@ -62,7 +66,7 @@ def create_app():
             [Mood.imperative_affirmative, Mood.imperative_negative], Tense.present)
 
         pronouns = ["yo", "tú", "él/ella/ud.", "nosotros/as",
-                    "vosotros/as, ellos/as", "ellos/as/uds."]
+                    "vosotros/as", "ellos/as/uds."]
 
         def get_forms(verb_tense: VerbTense) -> list[str]:
             return [

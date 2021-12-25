@@ -4,9 +4,9 @@
 
 
 {% macro conjugation_table(verbs) %}
-<div class="bg-light p-3">
+<div class="bg-light p-3 table-responsive">
 
-    <table class="table ">
+    <table class="table text-nowrap">
         <thead>
 
             <tr>
@@ -35,16 +35,18 @@
 {% block content %}
 <div class="">
     <!--BASE-->
-    <div class="container bg-light p-3">
-        <div class="row">
+    <div class="col ">
+        <div class="container bg-light p-3">
+            <div class="row">
 
-            <div class="display-3 col ">{{infinitive}}</div>
-            <div class="col ">
-                <div><b>gerundio:</b> {{gerund}}</div>
-                <div><b>participio:</b> {{pastparticiple}}</div>
+                <div class="display-3 col ">{{infinitive}}</div>
+                <div class="col ">
+                    <div><b>gerundio:</b> {{gerund}}</div>
+                    <div><b>participio:</b> {{pastparticiple}}</div>
+                </div>
             </div>
+            <div class="fst-italic text-center mt-3">{{english_meaning}}</div>
         </div>
-        <div class="fst-italic text-center mt-3">{{english_meaning}}</div>
     </div>
 
     <!--BUTTONS-->
@@ -60,20 +62,35 @@
             <label class="btn btn-bg-dark btn-outline-light col-4" for="subjunctive">Subjunctivo</label>
         </div>
 
-        <div class="btn-group col-md-6 col-sm-12 mt-4 container">
-            <input type="radio" class="btn-check" name="tense" id="past" autocomplete="off" disabled />
-            <label class="btn btn-outline-light col-4" for="past">Pasado</label>
+        <div class="col-md-6 col-sm-12 mt-4 container">
+            <div class="nav" role="tablist">
+                <button class="btn btn-outline-light col" for="past" role="tab" data-bs-toggle="tab"
+                    data-bs-target="#indicative-past">Pasado</button>
 
-            <input type="radio" class="btn-check" name="tense" id="present" autocomplete="off" checked />
-            <label class="btn btn-outline-light col-4 mx-1" for="present">Presente</label>
+                <button class="btn btn-outline-light col active" for="present" role="tab" data-bs-toggle="tab"
+                    data-bs-target="#indicative-present">Presente</button>
 
-            <input type="radio" class="btn-check" name="tense" id="future" autocomplete="off" disabled />
-            <label class="btn btn-outline-light col-4" for="future">Futuro</label>
+                <button class="btn btn-outline-light col" for="future" role="tab" data-bs-toggle="tab"
+                    data-bs-target="#indicative-future">Futuro</button>
+            </div>
         </div>
     </div>
 
     <!--TABLE-->
-    {{ conjugation_table(indicative_present) }}
+
+    <!-- TABLE INDICATIVE -->
+    <div class="tab-content" id="indictaive-tab-content">
+        <div class="tab-pane fade" id="indicative-past" role="tabpanel">
+            {{ conjugation_table(indicative_past) }}
+        </div>
+        <div class="tab-pane fade show active" id="indicative-present" role="tabpanel">
+            {{ conjugation_table(indicative_present) }}
+        </div>
+        <div class="tab-pane fade" id="indicative-future" role="tabpanel">
+            {{ conjugation_table(indicative_future) }}
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
