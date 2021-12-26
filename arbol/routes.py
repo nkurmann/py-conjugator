@@ -68,15 +68,15 @@ def create_app():
         pronouns = ["yo", "tú", "él/ella/ud.", "nosotros/as",
                     "vosotros/as", "ellos/as/uds."]
 
-        def get_forms(verb_tense: VerbTense) -> list[str]:
-            return [
-                verb_tense.form_1s,
-                verb_tense.form_2s,
-                verb_tense.form_3s,
-                verb_tense.form_1p,
-                verb_tense.form_2p,
-                verb_tense.form_3p
-            ]
+        # def get_forms(verb_tense: VerbTense) -> list[str]:
+        #     return [
+        #         verb_tense.form_1s,
+        #         verb_tense.form_2s,
+        #         verb_tense.form_3s,
+        #         verb_tense.form_1p,
+        #         verb_tense.form_2p,
+        #         verb_tense.form_3p
+        #     ]
 
         return render_template("conjugate.html",
                                indicative_past=indicative_past,
@@ -91,8 +91,8 @@ def create_app():
                                pastparticiple=pastparticiple,
                                english_meaning=english_meaning,
                                pronouns=pronouns,
-                               get_forms=get_forms,
-                               query=query)
+                               #    get_forms=get_forms,
+                               query=query)  # for display in search box
 
     @app.route("/xms")
     def xmas():

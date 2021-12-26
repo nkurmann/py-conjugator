@@ -50,7 +50,10 @@
             word.conjugated,
             word.tense
         )}}
-<div class="fst-italic text-center">{{word.translation}}</div>
+<div class="text-center">
+    <span class="fw-bold">{{word.infinitive+":"}}</span>
+    <span class="fst-italic">{{word.translation}}</span>
+</div>
 {% endmacro %}
 
 {% block content %}

@@ -43,6 +43,8 @@ class Tense(str, Enum):
 
 
 class VerbTense:
+    '''All forms for a certain tense and mood'''
+
     def __init__(self, **kwargs):
 
         self.english = kwargs["verb_english"]  # sentence
@@ -95,6 +97,8 @@ class VerbTense:
 
 
 class VerbConjugation:
+    '''All tenses and moods'''
+
     def __init__(self) -> None:
         self.inflection_dict: Dict[Tuple[Mood, Tense], VerbTense] = {}
 
@@ -123,9 +127,9 @@ class VerbConjugation:
 
 def dict_to_verb(conjugated_form: str, verb_dict: dict):
     if verb_dict["tense"] == "Pastparticiple":
-        return InvariantVerb(conjugated=conjugated_form, **verb_dict)
+        return ParticipleVerb(conjugated=conjugated_form, **verb_dict)
     if verb_dict["tense"] == "Gerund":
-        return InvariantVerb(conjugated=conjugated_form, **verb_dict)
+        return GerundVerb(conjugated=conjugated_form, **verb_dict)
     if verb_dict["tense"] == "Infinitive":
         return InfinitiveVerb(conjugated=conjugated_form, **verb_dict)
     return FormedVerb(conjugated=conjugated_form, **verb_dict)
@@ -135,6 +139,7 @@ def dict_to_verb(conjugated_form: str, verb_dict: dict):
 class InvariantVerb:
     # the conjugated form matched by the query
     conjugated: str
+    infinitive: str
 
     translation: str
     tense: str
@@ -145,8 +150,16 @@ class InvariantVerb:
     # "verb_english": "I destroy; am destroying"
 
 
+def ParticipleVerb(conjugated: str, translation: str, verb: str, tense: str):
+    return InvariantVerb(conjugated=conjugated, infinitive=verb, translation=translation, verb=translation, tense=tense)
+
+
+def GerundVerb(conjugated: str, translation: str, verb: str, tense: str):
+    return InvariantVerb(conjugated=conjugated, infinitive=verb, translation=translation, verb=translation, tense=tense)
+
+
 def InfinitiveVerb(conjugated: str, translation: str, verb_english: str, tense: str):
-    return InvariantVerb(conjugated=conjugated, translation=translation, verb=verb_english, tense=tense)
+    return InvariantVerb(conjugated=conjugated, infinitive=conjugated, translation=translation, verb=verb_english, tense=tense)
 
 
 @dataclass
@@ -166,9 +179,9 @@ class FormedVerb:
 
     def get_performer(self):
         is_imperative = self.mood == Mood.imperative_affirmative \
-                                     or self.mood == Mood.imperative_negative \
-                                     or self.mood == "Imperative Affirmative" \
-                                     or self.mood == "Imperative Negative"
+            or self.mood == Mood.imperative_negative \
+            or self.mood == "Imperative Affirmative" \
+            or self.mood == "Imperative Negative"
 
         if is_imperative:
             return f"({self.performer})"

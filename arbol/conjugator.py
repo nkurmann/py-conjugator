@@ -27,6 +27,7 @@ class Conjugator:
 
                 # mood = e["mood"]
                 # tense = e["tense"]
+
                 self.verb_dict[infinitive].add_tense(VerbTense(**e))
 
     def conjugate(self, infinitive: str, mood: Mood = Mood.indicative, tense: Tense = Tense.present) -> VerbTense:
