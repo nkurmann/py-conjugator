@@ -31,6 +31,33 @@
 </div>
 {% endmacro %}
 
+{% macro conjugation_table_moods(verbs) %}
+<div class="bg-light p-3 table-responsive">
+
+    <table class="table text-nowrap">
+        <thead>
+
+            <tr>
+                <th scope="col"></th>
+                {% for verb in verbs %}
+                <th scope="col">{{verb.mood}}</th>
+                {% endfor %}
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for i_person in range(pronouns|count) %}
+            <tr>
+                <th scope="row">{{pronouns[i_person]}}</th>
+                {% for verb in verbs %}
+                <td>{{ verb.forms[i_person] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endmacro %}
 
 {% block content %}
 <div class="">
@@ -49,48 +76,107 @@
         </div>
     </div>
 
-    <!--BUTTONS-->
+    <!--MOOD BUTTONS-->
     <div class="row justify-content-center">
-        <div class="btn-group col-md-6 col-sm-12 mt-4 container">
-            <input type="radio" class="btn-check" name="mood" id="imperative" autocomplete="off" disabled />
+        <div class="col-md-6 col-sm-12 mt-4 container">
+            <!-- <input type="radio" class="btn-check" name="mood" id="imperative" autocomplete="off" disabled />
             <label class="btn btn-bg-dark btn-outline-light col-4" for="imperative">Imperativo</label>
 
             <input type="radio" class="btn-check" name="mood" id="indicative" autocomplete="off" checked />
             <label class="btn btn-bg-dark btn-outline-light mx-1 col-4" for="indicative">Indicativo</label>
 
             <input type="radio" class="btn-check" name="mood" id="subjunctive" autocomplete="off" disabled />
-            <label class="btn btn-bg-dark btn-outline-light col-4" for="subjunctive">Subjunctivo</label>
-        </div>
-
-        <div class="col-md-6 col-sm-12 mt-4 container">
+            <label class="btn btn-bg-dark btn-outline-light col-4" for="subjunctive">Subjunctivo</label> -->
             <div class="nav" role="tablist">
-                <button class="btn btn-outline-light col" for="past" role="tab" data-bs-toggle="tab"
-                    data-bs-target="#indicative-past">Pasado</button>
+                <button class="btn btn-outline-light col" role="tab" data-bs-toggle="tab"
+                    data-bs-target="#imperative">Imperativo</button>
 
-                <button class="btn btn-outline-light col active" for="present" role="tab" data-bs-toggle="tab"
-                    data-bs-target="#indicative-present">Presente</button>
+                <button class="btn btn-outline-light col active" role="tab" data-bs-toggle="tab"
+                    data-bs-target="#indicative">Indicativo</button>
 
-                <button class="btn btn-outline-light col" for="future" role="tab" data-bs-toggle="tab"
-                    data-bs-target="#indicative-future">Futuro</button>
+                <button class="btn btn-outline-light col" role="tab" data-bs-toggle="tab"
+                    data-bs-target="#subjunctive">Subjunctivo</button>
             </div>
         </div>
     </div>
 
-    <!--TABLE-->
+    <div class="tab-content">
+        <!--IMPERATIVE-->
+        <div id="imperative" class="tab-pane" role="tabpanel">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-12 mt-4 container">
+                    <div class="nav" role="tablist">
+                        <button class="btn btn-outline-light col disabled">Pasado</button>
+                        <button class="btn btn-outline-light col active">Presente</button>
+                        <button class="btn btn-outline-light col disabled">Futuro</button>
+                    </div>
+                </div>
+            </div>
 
-    <!-- TABLE INDICATIVE -->
-    <div class="tab-content" id="indictaive-tab-content">
-        <div class="tab-pane fade" id="indicative-past" role="tabpanel">
-            {{ conjugation_table(indicative_past) }}
+            {{ conjugation_table_moods(imperative_present) }}
         </div>
-        <div class="tab-pane fade show active" id="indicative-present" role="tabpanel">
-            {{ conjugation_table(indicative_present) }}
+
+        <div id="indicative" class="tab-pane show active" role="tabpanel">
+            <!--INDICATIVE BUTTONS-->
+            <div class="row justify-content-center">
+
+                <div class="col-md-6 col-sm-12 mt-4 container">
+                    <div class="nav" role="tablist">
+                        <button class="btn btn-outline-light col" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#indicative-past">Pasado</button>
+
+                        <button class="btn btn-outline-light col active" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#indicative-present">Presente</button>
+
+                        <button class="btn btn-outline-light col" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#indicative-future">Futuro</button>
+                    </div>
+                </div>
+            </div>
+            <!--INDICATIVE TABLE-->
+            <div class="tab-content" id="indictaive-tab-content">
+                <div class="tab-pane" id="indicative-past" role="tabpanel">
+                    {{ conjugation_table(indicative_past) }}
+                </div>
+                <div class="tab-pane show active" id="indicative-present" role="tabpanel">
+                    {{ conjugation_table(indicative_present) }}
+                </div>
+                <div class="tab-pane" id="indicative-future" role="tabpanel">
+                    {{ conjugation_table(indicative_future) }}
+                </div>
+            </div>
         </div>
-        <div class="tab-pane fade" id="indicative-future" role="tabpanel">
-            {{ conjugation_table(indicative_future) }}
+
+        <div id="subjunctive" class="tab-pane" role="tabpanel">
+            <!--SUBJUNCTIVE BUTTONS-->
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-12 mt-4 container">
+                    <div class="nav" role="tablist">
+                        <button class="btn btn-outline-light col" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#subjunctive-past">Pasado</button>
+
+                        <button class="btn btn-outline-light col active" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#subjunctive-present">Presente</button>
+
+                        <button class="btn btn-outline-light col" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#subjunctive-future">Futuro</button>
+                    </div>
+                </div>
+            </div>
+            <!--SUBJUNCTIVE TABLE-->
+            <div class="tab-content" id="subjunctive-tab-content">
+                <div class="tab-pane" id="subjunctive-past" role="tabpanel">
+                    {{ conjugation_table(subjunctive_past) }}
+                </div>
+                <div class="tab-pane show active" id="subjunctive-present" role="tabpanel">
+                    {{ conjugation_table(subjunctive_present) }}
+                </div>
+                <div class="tab-pane" id="subjunctive-future" role="tabpanel">
+                    {{ conjugation_table(subjunctive_future) }}
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
 
 {% endblock %}
