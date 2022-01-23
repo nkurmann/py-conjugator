@@ -1,5 +1,5 @@
 from __future__ import annotations
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from arbol.config import VERB_DATABASE_PATH, VERB_LOOKUP_PATH
 
 from arbol.search_engine import SearchEngine
@@ -19,6 +19,12 @@ def create_app():
         print(f"Getting {query=}")
         search_results = se.search(query)
         print(f"Found {len(search_results)} results")
+
+        if len(search_results) == 1:
+            infinitive = search_results[0].infinitive
+            return redirect(f'{infinitive}?q={query}')
+            # return redirect(url_for(f'{infinitive}', q=query))
+
         return render_template("search.html",
                                query=query,
                                search_results=search_results)

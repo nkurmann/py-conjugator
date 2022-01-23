@@ -25,9 +25,9 @@ class SearchEngine:
         print(f"Looking for query {query}")
 
         # exact matches
-        if query in self.lookup_dict:
-            print("found exact match")
-            return [query]
+        # if query in self.lookup_dict:
+        #     print("found exact match")
+        #     return [query]
 
         # cleaned matches
         if keys := self.accentless_matcher.find(query):
