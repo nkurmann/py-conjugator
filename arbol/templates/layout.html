@@ -31,16 +31,18 @@
         </div>
 
         <!-- SEARCH -->
-        <div id="input-container" class="container mb-3 mt-3 p-0">
+        <div id="input-container" class="container mb-5 mt-3 p-0">
             <form class="input-group" action="/">
-                <div class="form-floating flex-fill">
-                    <input autofocus type="text" name="q" class="form-control rounded-0 border-0" id="search-input"
+                <!-- <div class="form-floating flex-fill">
+                    <input autofocus type="search" name="q" class="form-control rounded-0 border-0" id="search-input"
                         placeholder=" " value="{{query}}" />
                     <label for="search-input ">Buscar verbo</label>
-                </div>
-                <button type="submit" class="btn rounded-0 bg-white">
+                </div> -->
+                <button type="submit" class="btn bg-white">
                     <i class="fa fa-search"></i>
                 </button>
+                <input autofocus type="search" name="q" class="form-control border-0" id="search-input"
+                    placeholder="Buscar verbo" value="{{query}}" />
             </form>
         </div>
 
